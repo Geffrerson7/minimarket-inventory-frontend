@@ -1,0 +1,40 @@
+<div class="sidebar-container">
+  <section class="logo-container">
+<img [src]="logo" alt="logo" class="logo">
+  </section>
+
+  <section>
+
+<div *ngFor="let seccion of secciones">
+  <div class="seccion">
+      <span class="material-symbols-outlined">
+    {{seccion.icon}}
+    </span>
+    <p class="title-seccion"
+    [routerLink]="seccion.link"
+    routerLinkActive="active"
+    >
+      {{seccion.title}}
+    </p>
+  </div>
+</div>
+</section>
+
+<section>
+<div *ngFor="let seccion of secciones2" class="seccion_final">
+  <div class="seccion">
+      <span class="material-symbols-outlined">
+    {{seccion.icon}}
+    </span>
+    <p class="title-seccion"
+    routerLinkActive="active"
+    [routerLinkActiveOptions]="{ exact: true }">
+      {{seccion.title}}
+    </p>
+  </div>
+</div>
+
+</section>
+</div>
+
+

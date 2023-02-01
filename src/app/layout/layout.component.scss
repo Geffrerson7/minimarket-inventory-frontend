@@ -1,0 +1,16 @@
+.mat-drawer-container {
+  background-color: #F0F1F3;
+  height: 100%;
+}
+.mat-drawer {
+  background-color: #ffffff;
+  color: black;
+
+}
+
+:host ::ng-deep .mat-drawer {
+  background-color: #ffffff;
+  width: 200px;
+  color: black;
+  height: 90%;
+}
