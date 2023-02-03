@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { MatDrawer } from '@angular/material/sidenav';
 
 @Component({
@@ -7,6 +7,7 @@ import { MatDrawer } from '@angular/material/sidenav';
   styleUrls: ['./layout.component.scss']
 })
 export class LayoutComponent {
+
   constructor() { }
 
   ngOnInit(): void {

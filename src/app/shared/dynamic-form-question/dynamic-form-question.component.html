@@ -1,0 +1,38 @@
+<div [formGroup]="form">
+  <div [ngSwitch]="question.controlType">
+    <mat-form-field appearance="fill" *ngSwitchCase="'textbox'" [style.width.px]=327>
+      <mat-label>{{ question.label }}</mat-label>
+      <input
+        matInput
+        [placeholder]="question.label"
+        [formControlName]="question.key"
+        [id]="question.key"
+        [type]="question.type"
+        [value]="question.value"
+      />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" *ngSwitchCase="'dropdown'">
+      <mat-label>{{ question.label }}</mat-label>
+      <mat-select [formControlName]="question.key">
+        <mat-option
+          *ngFor="let option of question.options"
+          [value]="option.key"
+        >
+          {{ option.key }} - {{ option.value }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="fill" *ngSwitchCase="'textarea'">
+      <mat-label>{{ question.label }}</mat-label>
+      <textarea
+      matInput
+        [id]="question.key"
+        [formControlName]="question.key"
+        [placeholder]="question.label"
+        [type]="question.type"
+      ></textarea>
+    </mat-form-field>
+  </div>
+
+</div>

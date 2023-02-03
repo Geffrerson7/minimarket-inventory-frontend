@@ -9,7 +9,8 @@ const routes: Routes = [
   { path: 'reports', loadChildren: () => import('./reports/reports.module').then(m => m.ReportsModule) },
   { path: 'suppliers', loadChildren: () => import('./suppliers/suppliers.module').then(m => m.SuppliersModule) },
   { path: 'orders', loadChildren: () => import('./orders/orders.module').then(m => m.OrdersModule) },
-  { path: 'manage-store', loadChildren: () => import('./manage-store/manage-store.module').then(m => m.ManageStoreModule) }];
+  { path: 'manage-store', loadChildren: () => import('./manage-store/manage-store.module').then(m => m.ManageStoreModule) },
+  { path: 'shared', loadChildren: () => import('./shared/shared.module').then(m => m.SharedModule) }];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

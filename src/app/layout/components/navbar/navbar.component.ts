@@ -14,6 +14,7 @@ export class NavbarComponent implements OnInit {
   drawer!: MatDrawer
 
   @Input() nombres = '';
+  @Input() name=''
   selectedRol= ''
   toggle() {
       this.open.emit(null);
