@@ -1,0 +1,26 @@
+.container-text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2em;
+  font-size: 20px;
+}
+
+.button_primary {
+  height: 40px;
+  background-color: #094698;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.secondary {
+  background-color: #FA460A;
+}
+
+.mat-mdc-dialog-actions {
+  justify-content: center;
+}

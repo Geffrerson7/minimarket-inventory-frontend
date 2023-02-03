@@ -5,7 +5,7 @@
   </mat-drawer>
 
   <mat-drawer-content>
-    <app-navbar (open)="openSidenav(drawer)"></app-navbar>
+    <app-navbar (open)="openSidenav(drawer)" [name]="'string'"></app-navbar>
     <section class="section-content">
       <router-outlet></router-outlet>
     </section>

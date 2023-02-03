@@ -8,7 +8,8 @@ const routes: Routes = [{
   path: '',
   component: LayoutComponent,
 children:[
-  {path:'', component: SuppliersComponent}
+  {path:'', component: SuppliersComponent},
+
 ]
  }];
 @NgModule({

@@ -1,0 +1,14 @@
+<mat-dialog-content>
+  <head class="d-flex">
+    <mat-icon>add</mat-icon>
+    <h2>Registrar</h2>
+  </head>
+  <app-dynamic-form
+  [questions]="fields$ | async"
+  (saveEvent)="save($event)"
+  button_type="Registrar"
+  >
+  </app-dynamic-form>
+</mat-dialog-content>
+
+
