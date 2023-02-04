@@ -34,9 +34,9 @@ export class SidenavComponent implements OnInit {
       icon:'package'
     },
     {
-      title:'Manage Store',
-      link: '/manage-store',
-      icon:'fact_check'
+      title:'Clients',
+      link: '/clients',
+      icon:'assignment_ind'
     }
 
   ]
