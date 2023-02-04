@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { of } from 'rxjs';
 import { environment } from 'src/environments/environment.prod';
 import { QuestionBase } from '../models/forms/question-base';
+import { DropdownQuestion } from '../models/forms/question-dropdown';
 
 import { TextboxQuestion } from '../models/forms/question-textbox';
 import { Supplier } from '../models/Supplier.model';
@@ -100,8 +101,7 @@ export class SuppliersService {
         label: 'Address',
         value: supplier.address,
         order: 5,
-      }),
-
+      })
     ];
 
     return of(questions.sort((a, b) => a.order - b.order));

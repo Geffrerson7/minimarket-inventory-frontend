@@ -28,7 +28,9 @@
     </span>
     <p class="title-seccion"
     routerLinkActive="active"
-    [routerLinkActiveOptions]="{ exact: true }">
+    [routerLinkActiveOptions]="{ exact: true }"
+    (click)="seccion.title == 'Log Out'? logOut(): null"
+    >
       {{seccion.title}}
     </p>
   </div>

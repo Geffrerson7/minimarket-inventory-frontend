@@ -10,7 +10,7 @@ import { environment } from 'src/environments/environment.prod';
 })
 export class NavbarComponent implements OnInit {
   @Output() open: EventEmitter<any> = new EventEmitter();
-  logoVIVAPath = environment.imagesPath + '/logo-viva.png'
+
   drawer!: MatDrawer
 
   @Input() nombres = '';
