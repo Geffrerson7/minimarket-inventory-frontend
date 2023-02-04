@@ -115,6 +115,7 @@ export class SuppliersComponent {
   }
   register(event: any){
 
+    console.log(event)
     const dialogRef = this.dialog.open(ModalRegistrarComponent,{
       width: '400px',
       disableClose: true,
@@ -125,9 +126,11 @@ export class SuppliersComponent {
 
     dialogRef.afterClosed().subscribe(result=>{
 
+      console.log(result)
       if (result){
         this.supplier_service.register(result).subscribe({
         next: rpta=>{
+
           this.toastr.success('Registrado');
         },
         error: err=>{

@@ -10,7 +10,7 @@
         color="primary"
         type="submit"
         [disabled]="!form.valid"
-        (click)="edit(form.value)"
+        (click)="button_type=='Registrar'?save(form.value):edit(form.value)"
       >
         {{ button_type }}
       </button>

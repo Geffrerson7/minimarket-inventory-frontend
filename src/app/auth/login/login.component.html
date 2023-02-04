@@ -1,0 +1,39 @@
+<section class="login-container">
+
+  <section class="logo-container">
+    <img [src]="logoXl" alt="logo" class="main-logo">
+  </section>
+
+  <section class="form-container">
+    <img [src]="logo" alt="logo" class="form-logo">
+    <h1>Log in to your account</h1>
+    <h3>Welcome back! Please enter your details.</h3>
+    <form class="login-form" [formGroup]="formLogin">
+      <p>Email</p>
+      <mat-form-field class="">
+        <mat-label>Email</mat-label>
+        <input type="email" matInput formControlName="email" placeholder="Ex. pat@example.com">
+        <mat-error *ngIf="formLogin.get('email')?.hasError('email')">
+          Please enter a valid email address
+        </mat-error>
+        <mat-error *ngIf="formLogin.get('email')?.hasError('required')">
+          Email is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <p>Password</p>
+      <mat-form-field class="">
+
+        <mat-label>Password</mat-label>
+        <input type="password" matInput formControlName="password" placeholder="********">
+        <mat-error *ngIf="formLogin.get('password')?.hasError('required')">
+          Password is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <button class="btn_login" (click)="login()">Sign in</button>
+      <p class="sign-up">Don’t have an account?<a>Sign up</a></p>
+    </form>
+  </section>
+
+</section>

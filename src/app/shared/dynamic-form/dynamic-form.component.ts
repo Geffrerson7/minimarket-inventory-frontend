@@ -35,7 +35,8 @@ export class DynamicFormComponent implements OnInit {
     this.form.invalid?null:this.editEvent.emit(element);
   }
   save(element:string) {
-    this.form.invalid?null:this.editEvent.emit(element);
+    console.log()
+    this.form.invalid?null:this.saveEvent.emit(element);
   }
   cancel(){
     this.editEvent.emit('');

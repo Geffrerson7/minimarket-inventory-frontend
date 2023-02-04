@@ -55,7 +55,10 @@ export class SidenavComponent implements OnInit {
   constructor() {
 
   }
-
+logOut(){
+  localStorage.clear();
+  window.location.reload();
+}
   ngOnInit(): void {
 
   }

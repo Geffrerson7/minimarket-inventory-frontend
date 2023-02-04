@@ -34,7 +34,6 @@ export class TableCrudComponent implements AfterViewInit, OnChanges {
   constructor(private _liveAnnouncer: LiveAnnouncer) {}
   ngOnChanges(changes: SimpleChanges): void {
     this.dataSource = new MatTableDataSource(this.configuration?.data);
-
     this.displayedColumns = this.configuration?.dataTable.map(
       (x: any) => x.columnDef
     );

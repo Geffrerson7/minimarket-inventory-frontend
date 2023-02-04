@@ -18,11 +18,7 @@ export class ModalRegistrarComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any) {
       this.fields$ = this.data['campos'];
     }
-
-
-    ngOnInit(): void {
-
-    }
+    ngOnInit(): void {}
 
     save(update_data: String): void {
       this.dialogRef.close(update_data);
