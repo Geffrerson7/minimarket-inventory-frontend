@@ -7,3 +7,7 @@ export class TextboxQuestion extends QuestionBase<string> {
 export class TextareaQuestion extends QuestionBase<string> {
   override controlType = 'textarea';
 }
+
+export class NumberQuestion extends QuestionBase<number> {
+  override controlType = 'textbox';
+}

@@ -37,8 +37,12 @@ export class SidenavComponent implements OnInit {
       title:'Clients',
       link: '/clients',
       icon:'assignment_ind'
-    }
-
+    },
+    {
+      title:'Category',
+      link: '/categories',
+      icon:'fact_check'
+    },
   ]
   secciones2 = [
     {
