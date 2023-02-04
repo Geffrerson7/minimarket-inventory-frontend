@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
+import { Subscription } from 'rxjs';
 import { Client } from '../core/models/Client.model';
 import { tableConfig } from '../core/models/table_config.model';
 import { ClientsService } from '../core/services/clients.service';
@@ -23,6 +24,7 @@ const dataTable = [
 export class ClientsComponent {
   clients!: Client[];
   tableConfiguration!: tableConfig;
+  suscription!: Subscription;
 
   constructor(
     private client_service: ClientsService,
@@ -31,13 +33,9 @@ export class ClientsComponent {
   ) {}
 
   ngOnInit(): void {
-    this.client_service.getClients().subscribe({
-      next: (rpta) => {
-        this.clients = rpta['body'];
-
-        this.tableConfig(this.clients);
-      },
-      error: (err) => {},
+    this.getClients();
+    this.suscription = this.client_service.refresh$.subscribe(() => {
+      this.getClients();
     });
   }
 
@@ -52,6 +50,17 @@ export class ClientsComponent {
     };
   }
 
+  getClients(): void {
+    this.client_service.getClients().subscribe({
+      next: (rpta) => {
+        this.clients = rpta['body'];
+
+        this.tableConfig(this.clients);
+      },
+      error: (err) => {},
+    });
+  }
+
   register(event: any) {
     const dialogRef = this.dialog.open(ModalRegistrarComponent, {
       width: '400px',
@@ -60,12 +69,12 @@ export class ClientsComponent {
         campos: this.client_service.getQuestionsRegister(),
       },
     });
-    
+
     dialogRef.afterClosed().subscribe((result) => {
-      console.log(result);
       if (result) {
         this.client_service.register(result).subscribe({
           next: (rpta) => {
+            console.log(rpta);
             this.toastr.success('Registrado');
           },
           error: (err) => {
@@ -76,6 +85,29 @@ export class ClientsComponent {
         });
       }
     });
-    
+  }
+
+  update(client: any) {
+    const dialogRef = this.dialog.open(ModalActualizarComponent, {
+      width: '400px',
+      disableClose: true,
+      data: {
+        campos: this.client_service.getUpdateFields(client),
+      },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result !== '') {
+        this.client_service.update(client.id, result).subscribe({
+          next: (rpta) => {
+            this.toastr.success('Se actualizó correctamente');
+          },
+          error: (err) => {
+            this.toastr.error(err['error']['message'], 'Error');
+          },
+          complete: () => {},
+        });
+      }
+    });
   }
 }
