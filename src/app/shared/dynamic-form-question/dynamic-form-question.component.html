@@ -12,18 +12,18 @@
       />
     </mat-form-field>
 
-    <mat-form-field appearance="fill" *ngSwitchCase="'dropdown'">
+    <mat-form-field appearance="fill" *ngSwitchCase="'dropdown'" [style.width.px]=327>
       <mat-label>{{ question.label }}</mat-label>
       <mat-select [formControlName]="question.key">
         <mat-option
           *ngFor="let option of question.options"
           [value]="option.key"
         >
-          {{ option.key }} - {{ option.value }}
+          {{ option.value }}
         </mat-option>
       </mat-select>
     </mat-form-field>
-    <mat-form-field appearance="fill" *ngSwitchCase="'textarea'">
+    <mat-form-field appearance="fill" *ngSwitchCase="'textarea'" [style.width.px]=327>
       <mat-label>{{ question.label }}</mat-label>
       <textarea
       matInput
