@@ -10,7 +10,7 @@ import { ModalBorrarComponent } from '../shared/modal-borrar/modal-borrar.compon
 import { ModalRegistrarComponent } from '../shared/modal-registrar/modal-registrar.component';
 
 const dataTable = [
-  { columnDef: 'id', header: 'Nº Supplier' },
+  { columnDef: 'id', header: 'Nº Client' },
   { columnDef: 'document_id', header: 'Identificación' },
   { columnDef: 'name', header: 'Name' },
   { columnDef: 'acción', header: 'Acción' },
@@ -74,11 +74,9 @@ export class ClientsComponent {
       if (result) {
         this.client_service.register(result).subscribe({
           next: (rpta) => {
-            console.log(rpta);
             this.toastr.success('Registrado');
           },
           error: (err) => {
-            console.log(err);
             this.toastr.error(err['error']['message'], 'Error');
           },
           complete: () => {},

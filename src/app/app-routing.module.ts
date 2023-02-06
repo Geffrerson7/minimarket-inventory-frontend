@@ -14,7 +14,8 @@ const routes: Routes = [
   { path: 'shared', loadChildren: () => import('./shared/shared.module').then(m => m.SharedModule) },
   { path: '', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) },
   { path: 'clients', loadChildren: () => import('./clients/clients.module').then(m => m.ClientsModule) },
-  { path: 'categories', loadChildren: () => import('./categories/categories.module').then(m => m.CategoriesModule), canActivate: [ValidateSessionGuard] }];
+  { path: 'categories', loadChildren: () => import('./categories/categories.module').then(m => m.CategoriesModule), canActivate: [ValidateSessionGuard] },
+  { path: 'products', loadChildren: () => import('./products/products.module').then(m => m.ProductsModule), canActivate: [ValidateSessionGuard] }];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
