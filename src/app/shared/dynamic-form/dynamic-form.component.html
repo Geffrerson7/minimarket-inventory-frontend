@@ -9,9 +9,11 @@
         mat-raised-button
         color="primary"
         type="submit"
-        [disabled]="!form.valid"
+
+        [disabled]="secondForm?!isSecondFormValid || !form.valid: !form.valid"
         (click)="button_type=='Registrar'?save(form.value):edit(form.value)"
       >
+      {{!form.valid&&!isSecondFormValid}}
         {{ button_type }}
       </button>
       <button

@@ -13,7 +13,11 @@ const routes: Routes = [
   { path: 'manage-store', loadChildren: () => import('./manage-store/manage-store.module').then(m => m.ManageStoreModule) },
   { path: 'shared', loadChildren: () => import('./shared/shared.module').then(m => m.SharedModule) },
   { path: '', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) },
-  { path: 'clients', loadChildren: () => import('./clients/clients.module').then(m => m.ClientsModule) }];
+  { path: 'clients', loadChildren: () => import('./clients/clients.module').then(m => m.ClientsModule), canActivate: [ValidateSessionGuard] },
+
+  { path: 'order-detail', loadChildren: () => import('./order-detail/order-detail.module').then(m => m.OrderDetailModule), canActivate: [ValidateSessionGuard]  }
+
+];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]

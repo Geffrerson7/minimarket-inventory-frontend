@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Inject, Input, OnInit, Output } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
-import { QuestionBase } from '../forms/question-base';
+import { QuestionBase } from 'src/app/core/models/forms/question-base';
 
 
 
@@ -27,6 +27,7 @@ export class ModalActualizarComponent implements OnInit {
   }
 
   save_edit(update_data: String): void {
+
     this.dialogRef.close(update_data);
   }
 

@@ -1,10 +1,7 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { QuestionBase } from 'src/app/core/models/forms/question-base';
 import { QuestionControlService } from 'src/app/core/services/question-control.service';
-
-import { QuestionBase } from '../forms/question-base';
-
-
 @Component({
   selector: 'app-dynamic-form',
   templateUrl: './dynamic-form.component.html',
@@ -16,6 +13,8 @@ export class DynamicFormComponent implements OnInit {
   @Input() button_type: String=''
   @Output() editEvent= new EventEmitter<String>()
   @Output() saveEvent= new EventEmitter<String>()
+  @Input() isSecondFormValid!: Boolean;
+  @Input() secondForm!: Boolean;
   form!: FormGroup;
   payLoad = '';
 
@@ -27,6 +26,9 @@ export class DynamicFormComponent implements OnInit {
 
   }
 
+  ngOnChanges(changes: SimpleChanges) {
+    console.log(this.isSecondFormValid, 'touched')
+  }
   onSubmit() {
     this.payLoad = JSON.stringify(this.form.getRawValue());
   }
