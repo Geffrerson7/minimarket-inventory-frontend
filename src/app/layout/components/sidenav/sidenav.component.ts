@@ -24,9 +24,10 @@ export class SidenavComponent implements OnInit {
       icon:'inventory'
     },
     {
-      title:'Reports',
-      link:'/reports',
-      icon:'analytics'
+      title:'Clients',
+      link: '/clients',
+      icon:'assignment_ind'
+
     },
     {
       title:'Suppliers',
@@ -39,11 +40,11 @@ export class SidenavComponent implements OnInit {
       icon:'package'
     },
     {
-      title:'Clients',
-      link: '/clients',
-      icon:'assignment_ind'
+      title:'Order detail',
+      link:'/order-detail',
+      icon:'analytics'
     },
-    
+
   ]
   secciones2 = [
     {
