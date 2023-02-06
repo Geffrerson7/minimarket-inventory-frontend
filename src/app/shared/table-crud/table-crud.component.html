@@ -39,10 +39,11 @@
           <div
             *ngIf="
               column.columnDef === 'fechamodificacion' ||
-              column.columnDef === 'fecharegistro'
+              column.columnDef === 'fecharegistro' ||
+              column.columnDef === 'expirity_date'
             "
           >
-            {{ element[column.columnDef] | date : "dd/MM/yyyy hh:mm" }}
+            {{ element[column.columnDef] | date : "dd/MM/yyyy": 'UTC' }}
           </div>
           <div *ngIf="column.columnDef === 'acción'" class="d-flex">
             <button
@@ -64,7 +65,7 @@
           </div>
           <div
             *ngIf="
-              column.columnDef !== 'acción'
+              column.columnDef !== 'acción' && column.columnDef !== 'expirity_date'
             "
           >
             {{ element[column.columnDef] }}

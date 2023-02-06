@@ -1,29 +1,27 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { MatDrawer} from '@angular/material/sidenav';
+import { MatDrawer } from '@angular/material/sidenav';
 import { environment } from 'src/environments/environment.prod';
-
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.scss']
+  styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent implements OnInit {
   @Output() open: EventEmitter<any> = new EventEmitter();
 
-  drawer!: MatDrawer
+  drawer!: MatDrawer;
 
   @Input() nombres = '';
-  @Input() name=''
-  selectedRol= ''
+  @Input() name = '';
+  @Input() username=localStorage.getItem('username');
+  
+  selectedRol = '';
   toggle() {
-      this.open.emit(null);
+    this.open.emit(null);
   }
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
-
-
-  }
+  ngOnInit(): void {}
 }

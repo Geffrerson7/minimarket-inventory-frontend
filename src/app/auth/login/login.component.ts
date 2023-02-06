@@ -26,6 +26,7 @@ export class LoginComponent {
     this._auth.login(body).subscribe({
       next: rpta=>{
         localStorage.setItem('token', rpta['token']);
+        localStorage.setItem('username', rpta['data']['name']);
         this.router.navigate(['/','dashboard'])
       }
     })
