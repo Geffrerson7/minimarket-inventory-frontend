@@ -18,7 +18,7 @@
 </div>
 <table mat-table
        [dataSource]="dataSource" multiTemplateDataRows
-       *ngIf="configuration"
+
        class="mat-elevation-z8"
        matSort
        (matSortChange)="announceSortChange($event)"
@@ -119,6 +119,6 @@
 [pageIndex]="5"
 [pageSize]="10"
 [pageSizeOptions]="[5,10, 25, 50]"
-*ngIf="configuration?.pagination"
+*ngIf="configuration.pagination"
 >
 </mat-paginator>
