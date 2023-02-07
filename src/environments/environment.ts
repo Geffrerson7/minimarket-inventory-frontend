@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   imagesPath: 'assets/images',
-  api:  'http://localhost:8080/api/v1'
+  api:  'https://proyecto-unidad-8-back.vercel.app/api/v1'
 };
 /*
  * For easier debugging in development mode, you can import the following file
