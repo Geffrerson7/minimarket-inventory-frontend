@@ -35,5 +35,47 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/pusher-angular/1.0.0/pusher-angular.min.js"></script>
 -->
   <script src="https://js.pusher.com/7.2/pusher.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+  <script>
+    const SUPABASE_URL = "https://ffbpyyxsfzisbsxubeqf.supabase.co";
+    const SUPABASE_ANON_KEY =
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZmYnB5eXhzZnppc2JzeHViZXFmIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NzU3NDIyNDUsImV4cCI6MTk5MTMxODI0NX0.G9zdA3jI0Ex26I7pjgqdaDhaGMxG5HOR2r2prJdGp5k";
+
+    const _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+  </script>
+  <script>
+    async function obtenerProductos() {
+      try {
+        const { data, error } = await _supabase
+          .from('Sensors')
+          .select()
+      let temperatura = ''
+      let humedad = ''
+      data.forEach(function(item){
+      temperatura = item.temperatura
+      humedad = item.humedad
+      console.log(data)
+    }) 
+    document.getElementById('temp').innerHTML =temperatura.toFixed(2)
+    document.getElementById('hum').innerHTML =humedad
+    }
+      catch (err) {
+        console.error("Error al recibir los datos de la db", err);
+      }
+  };
+
+  async function subscribeSensor() {
+      const mySubscription = _supabase
+        .channel('*')
+        .on('*', (payload) => {
+          obtenerProductos();
+          console.log('¡Recibiendo cambios!', payload)
+        })
+        .subscribe() 
+        obtenerProductos();
+  }
+  subscribeSensor();
+
+  </script>
 </body>
 </html>

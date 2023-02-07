@@ -1,5 +1,5 @@
 <div class="row">
-    
+
     <!-- Statistics -->
     <div class="col-sm-6 col-md-3" *ngFor="let stat of stats">
         <mat-card [ngClass]="['text-white', stat.color]">
@@ -20,20 +20,39 @@
                 <mat-card-title>Traffic</mat-card-title>
             </mat-card-header>
             <mat-card-content>
-                
-                    <apx-chart  [series]="chartSeries" [chart]="chartDetails"> </apx-chart>
-                
+
+                <apx-chart [series]="chartSeries" [chart]="chartDetails"> </apx-chart>
+
             </mat-card-content>
         </mat-card>
     </div>
-    <!-- <div class="col-md-5">
-        <mat-card>
-            <mat-card-header>
-                <mat-card-title>Weekly Revenue</mat-card-title>
-            </mat-card-header>
-            <mat-card-content>
-                <div id="chart2"></div>
-            </mat-card-content>
-        </mat-card>
-    </div> -->
+    <div class="col-md-5">
+        <!--Barra Título-->
+        <div class="topnav">
+            <h1>Lecturas del sensor DHT11 <i class="fas fa-clipboard-list"></i></h1>
+        </div>
+        <!--LECTURAS DEL SENSOR-->
+        <div id="holder"></div>
+        <div>
+            <div class="cards">
+                <!--TEMPERATURA-->
+                <div class="card">
+                    <p>
+                        <i class="fas fa-thermometer-half" style="color: #059e8a"></i>
+                        TEMPERATURA
+                    </p>
+                    <p>
+                        <span class="reading"><span id="temp"></span> &deg;C</span>
+                    </p>
+                </div>
+                <!--HUMEDAD-->
+                <div class="card">
+                    <p><i class="fas fa-tint" style="color: #00add6"></i> HUMEDAD</p>
+                    <p>
+                        <span class="reading"><span id="hum"></span> &percnt;</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
