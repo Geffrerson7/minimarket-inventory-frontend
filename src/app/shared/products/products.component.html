@@ -1,0 +1,38 @@
+<div class="container-products">
+  <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
+    <!-- This is the tree node template for leaf nodes -->
+    <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>
+      <!-- use a disabled button to provide padding for tree leaf -->
+      <button mat-icon-button disabled></button>
+      {{node.name}}
+    </mat-tree-node>
+    <!-- This is the tree node template for expandable nodes -->
+    <mat-tree-node *matTreeNodeDef="let node;when: hasChild" matTreeNodePadding class="treenode" [formGroup]="form" >
+
+      <div class="right-node-container">
+            <button mat-icon-button matTreeNodeToggle
+              [attr.aria-label]="'Toggle ' + node.name">
+        <mat-icon class="mat-icon-rtl-mirror">
+          {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+        </mat-icon>
+      </button>
+      <p class="title-container">
+        <span class="product">{{node.name}} </span>
+        <span>
+          Stock {{updateStock(node.stock, form.get(node.id.toString())?.value, node.name)}}
+        </span>
+        <mat-error *ngIf="form.get(node.id.toString())?.value>node.stock">
+          Excedio el stock
+        </mat-error>
+      </p>
+      </div>
+      <div class="contador_container">
+          <button (click)="add(node.id.toString(),form.get(node.id.toString())?.value,node.stock)">+</button>
+          <input class="cant-product" [formControlName]="node.id" (change)="isTouched()" >
+          <button (click)="less(node.id.toString(),form.get(node.id.toString())?.value, node.stock)">-</button>
+      </div>
+
+    </mat-tree-node>
+  </mat-tree>
+
+</div>

@@ -12,21 +12,23 @@
       />
     </mat-form-field>
 
-    <mat-form-field appearance="fill" *ngSwitchCase="'dropdown'" [style.width.px]=327>
+    <mat-form-field class="example-full-width" appearance="fill" *ngSwitchCase="'dropdown'" [style.width.px]=327>
       <mat-label>{{ question.label }}</mat-label>
-      <mat-select [formControlName]="question.key">
-        <mat-option
-          *ngFor="let option of question.options"
-          [value]="option.key"
-        >
-          {{ option.value }}
+      <input matInput
+             aria-label="State"
+             [matAutocomplete]="auto"
+             [formControlName]="question.key">
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let option of filteredOptions | async" [value]="option.key+'-'+option.value">
+          {{ option.key }} - {{ option.value }}
         </mat-option>
-      </mat-select>
+      </mat-autocomplete>
     </mat-form-field>
+
     <mat-form-field appearance="fill" *ngSwitchCase="'textarea'" [style.width.px]=327>
       <mat-label>{{ question.label }}</mat-label>
       <textarea
-      matInput
+        matInput
         [id]="question.key"
         [formControlName]="question.key"
         [placeholder]="question.label"

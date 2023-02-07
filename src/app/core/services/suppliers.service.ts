@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { of } from 'rxjs';
+import { of, Subject, tap } from 'rxjs';
 import { environment } from 'src/environments/environment.prod';
 import { QuestionBase } from '../models/forms/question-base';
 import { DropdownQuestion } from '../models/forms/question-dropdown';
@@ -13,24 +13,42 @@ const PATH=environment.api
 })
 export class SuppliersService {
 
-
+  private _refresh$ = new Subject<void>();
   url = `${PATH}/suppliers`
   constructor(private _httpclient: HttpClient) { }
-
+  get refresh$() {
+    return this._refresh$;
+  }
   getSuppliers(){
-    return this._httpclient.get<any>(this.url);
+    return this._httpclient.get<any>(this.url).pipe(
+      tap(() => {
+        this._refresh$.next();
+      })
+    );
   }
 
   register(body: Supplier){
-    return this._httpclient.post<any>(this.url, body);
+    return this._httpclient.post<any>(this.url, body).pipe(
+      tap(() => {
+        this._refresh$.next();
+      })
+    );
   }
   delete(id: String){
     const url_id = `${this.url}/${id}`
-    return this._httpclient.delete<any>(url_id);
+    return this._httpclient.delete<any>(url_id).pipe(
+      tap(() => {
+        this._refresh$.next();
+      })
+    );
   }
   update(id: String, body: Supplier){
     const url_id = `${this.url}/${id}`
-    return this._httpclient.put<any>(url_id, body);
+    return this._httpclient.put<any>(url_id, body).pipe(
+      tap(() => {
+        this._refresh$.next();
+      })
+    );
   }
 
   getQuestionsRegister() {

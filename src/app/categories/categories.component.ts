@@ -56,7 +56,7 @@ export class CategoriesComponent {
       this.category_service.getCategories().subscribe({
         next: (rpta) => {
           this.categories = rpta['body'];
-  
+
           this.tableConfig(this.categories);
         },
         error: (err) => {},
@@ -70,25 +70,25 @@ export class CategoriesComponent {
         disableClose: true,
       });
       dialogRef.afterClosed().subscribe((result) => {
-  
+
         if(result){
           this.category_service.delete(category.id).subscribe({
             next: (rpta)=>{
-              console.log(rpta)
+              this.toastr.success('Se eliminó correctamente');
             },
             error: (err)=>{
-              console.log(err)
+              this.toastr.error(err['error']['message'], 'Error');
             },
             complete() {
-              window.location.reload()
+
             },
           })
         }
       });
     }
-  
+
     update(category: any){
-  
+
       const dialogRef = this.dialog.open(ModalActualizarComponent,{
         width: '400px',
         disableClose: true,
@@ -96,7 +96,7 @@ export class CategoriesComponent {
           campos: this.category_service.getUpdateFields(category)
           }
       });
-  
+
       dialogRef.afterClosed().subscribe((result)=>{
         if(result!== '')
         {for (const key in result) {
@@ -109,21 +109,21 @@ export class CategoriesComponent {
             this.toastr.success('Se actualizó correctamente');
           },
           error: (err)=>{
-            console.log(err)
+
             this.toastr.error(err['error']['message'], 'Error');
           },
           complete: ()=>{
-            window.location.reload()
+
           }
         })
         }
-  
-  
-  
+
+
+
       })
     }
     register(event: any){
-  
+
       const dialogRef = this.dialog.open(ModalRegistrarComponent,{
         width: '400px',
         disableClose: true,
@@ -131,9 +131,9 @@ export class CategoriesComponent {
           campos: this.category_service.getQuestionsRegister()
           }
       });
-  
+
       dialogRef.afterClosed().subscribe((result)=>{
-  
+
         if (result){
           for (const key in result) {
             if (!isNaN(parseFloat(result[key]))) {
@@ -145,16 +145,16 @@ export class CategoriesComponent {
             this.toastr.success('Registrado');
           },
           error: (err)=>{
-            console.log(err)
+
             this.toastr.error(err['error']['message'], 'Error');
           },
           complete: ()=>{
-  
+
           }
         })
         }
-  
-  
+
+
       })
     }
 }
