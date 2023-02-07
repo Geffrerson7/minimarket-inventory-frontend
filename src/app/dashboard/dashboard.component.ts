@@ -22,6 +22,7 @@ import { DashboardService } from './dashboard.service';
 export class DashboardComponent implements OnInit, OnDestroy {
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
 
+  warehouses = ['Dairy warehouse','Beverage warehouse', 'Grocery store']
   chartSeries: ApexNonAxisChartSeries=[40,32,28,55];
 
   chartDetails: ApexChart={
@@ -42,12 +43,12 @@ export class DashboardComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    
+
   }
 
   ngOnDestroy() {
     this.notifySubscription.unsubscribe();
   }
 
-  
+
 }
