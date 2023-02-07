@@ -12,6 +12,7 @@ import { AngularMaterialModule } from '../angular-material/angular-material.modu
 import { ModalRegistrarComponent } from './modal-registrar/modal-registrar.component';
 import { ModalRegistrarOrderComponent } from './modal-order-registrar/modal-registrar-order.component';
 import { ModalActualizarOrderComponent } from './modal-order-actualizar/modal-actualizar-order.component';
+import { TableBasicComponent } from './table-basic/table-basic.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { ModalActualizarOrderComponent } from './modal-order-actualizar/modal-ac
     ModalRegistrarComponent,
     TableCrudComponent,
     ModalRegistrarOrderComponent,
-    ModalActualizarOrderComponent
+    ModalActualizarOrderComponent,
+    TableBasicComponent
   ],
   imports: [
     CommonModule,
@@ -38,7 +40,8 @@ import { ModalActualizarOrderComponent } from './modal-order-actualizar/modal-ac
     ModalBorrarComponent,
     TableCrudComponent,
     ModalRegistrarOrderComponent,
-    ModalActualizarOrderComponent
+    ModalActualizarOrderComponent,
+    TableBasicComponent
   ]
 })
 export class SharedModule { }
