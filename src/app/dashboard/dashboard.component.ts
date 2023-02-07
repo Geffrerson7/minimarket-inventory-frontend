@@ -6,6 +6,8 @@ import {
   ChangeDetectionStrategy,
   NgZone,
 } from '@angular/core';
+import { ApexNonAxisChartSeries } from 'ng-apexcharts';
+import { ApexChart } from 'ng-apexcharts/public_api';
 import { Subscription } from 'rxjs';
 
 import { DashboardService } from './dashboard.service';
@@ -24,6 +26,14 @@ export class DashboardComponent implements OnInit, OnDestroy {
   chart1: any;
   chart2: any;
 
+  chartSeries: ApexNonAxisChartSeries=[40,32,28,55];
+
+  chartDetails: ApexChart={
+    type: 'pie',
+    toolbar: {
+      show: true
+    }
+  }
   stats = this.dashboardSrv.getStats();
 
   notifySubscription!: Subscription;
