@@ -18,7 +18,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
   imports: [
     CommonModule,
     LayoutRoutingModule,
-    AngularMaterialModule
+    AngularMaterialModule,
+    
   ]
 })
 export class LayoutModule { }

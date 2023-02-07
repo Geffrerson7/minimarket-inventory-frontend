@@ -138,7 +138,7 @@ export class SuppliersComponent {
           this.toastr.error(err['error']['message'], 'Error');
         },
         complete: ()=>{
-
+          window.location.reload()
         }
       })
       }
