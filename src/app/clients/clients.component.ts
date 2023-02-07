@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,OnDestroy  } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
@@ -21,7 +21,7 @@ const dataTable = [
   templateUrl: './clients.component.html',
   styleUrls: ['./clients.component.scss'],
 })
-export class ClientsComponent {
+export class ClientsComponent  implements OnDestroy{
   clients!: Client[];
   tableConfiguration!: tableConfig;
   suscription!: Subscription;
@@ -38,8 +38,10 @@ export class ClientsComponent {
       this.getClients();
     });
   }
-
-  ngOnChange() {}
+  ngOnDestroy() {
+    this.suscription.unsubscribe();
+  }
+  
 
   tableConfig(data: any) {
     this.tableConfiguration = {

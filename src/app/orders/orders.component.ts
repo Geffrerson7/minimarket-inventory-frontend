@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component,OnDestroy  } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
@@ -27,7 +27,7 @@ const dataTable = [
   templateUrl: './orders.component.html',
   styleUrls: ['./orders.component.scss']
 })
-export class OrdersComponent implements OnInit {
+export class OrdersComponent implements OnDestroy {
   tableConfiguration!: tableConfig;
   mensaje = '';
   suscription!: Subscription;
@@ -59,6 +59,11 @@ export class OrdersComponent implements OnInit {
     });
 
   }
+
+  ngOnDestroy() {
+    this.suscription.unsubscribe();
+  }
+
   getOrders(){
         this._order.getOrders().subscribe({
       next: rpta=>{
@@ -71,7 +76,7 @@ export class OrdersComponent implements OnInit {
           // element.order_detail =
           return element;
         });
-        console.log(this.orders)
+        //console.log(this.orders)
         this.tableConfig(this.orders);
       }
     })
@@ -184,7 +189,7 @@ export class OrdersComponent implements OnInit {
 
       if (result){
 
-        console.log(result)
+        //console.log(result)
         this._order.update(event['id'],result).subscribe({
         next: rpta=>{
           this.toastr.success('Registrado');

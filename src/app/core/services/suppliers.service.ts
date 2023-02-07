@@ -88,7 +88,7 @@ export class SuppliersService {
     return of(questions.sort((a, b) => a.order - b.order));
   }
   getUpdateFields(supplier: Supplier) {
-
+    
     const questions: QuestionBase<string>[] = [
       new TextboxQuestion({
         key: 'name',
