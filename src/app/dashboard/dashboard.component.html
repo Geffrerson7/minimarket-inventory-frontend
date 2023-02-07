@@ -14,24 +14,38 @@
     </div>
 
     <!-- Charts -->
-    <!-- <div class="col-md-12 mt-4">
+    <div class="col-md-6 mt-4 w-50">
         <mat-card>
             <mat-card-header>
-                <mat-card-title>Traffic</mat-card-title>
+                <mat-card-title>Categories</mat-card-title>
             </mat-card-header>
             <mat-card-content>
-                <div id="chart1"></div>
+
+                <apx-chart [series]="chartSeries" [chart]="chartDetails" [labels]="chartLabels"> </apx-chart>
+
             </mat-card-content>
         </mat-card>
-    </div> -->
-    <!-- <div class="col-md-5">
-        <mat-card>
+    </div>
+    <div class="col-md-6 mt-4" >
+        <mat-card *ngFor="let warehouse of warehouses" class="my-2">
             <mat-card-header>
-                <mat-card-title>Weekly Revenue</mat-card-title>
+                <mat-card-title>{{warehouse}}</mat-card-title>
             </mat-card-header>
             <mat-card-content>
-                <div id="chart2"></div>
+                <div id="holder">Warehouse temperature and humidity</div>
+                <p>
+                    <span class="material-symbols-outlined">
+                        device_thermostat
+                    </span>
+                    TEMPERATURA: <span class="reading"><span id="temp"></span> &deg;C</span>
+                </p>
+                <p>
+                    <span class="material-symbols-outlined">
+                        humidity_mid
+                    </span>
+                    HUMEDAD: <span class="reading"><span id="hum"></span> &percnt;</span>
+                </p>
             </mat-card-content>
         </mat-card>
-    </div> -->
+    </div>
 </div>

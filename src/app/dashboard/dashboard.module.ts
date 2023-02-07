@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardComponent } from './dashboard.component';
 import { AngularMaterialModule } from '../angular-material/angular-material.module';
+import { NgApexchartsModule } from 'ng-apexcharts';
 
 @NgModule({
   declarations: [
@@ -12,7 +13,8 @@ import { AngularMaterialModule } from '../angular-material/angular-material.modu
   imports: [
     CommonModule,
     DashboardRoutingModule,
-    AngularMaterialModule
+    AngularMaterialModule,
+    NgApexchartsModule,
   ]
 })
 export class DashboardModule { }

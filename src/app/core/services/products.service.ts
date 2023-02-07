@@ -64,14 +64,14 @@ export class ProductsService {
 
         order: 2,
       }),
-      new TextareaQuestion({
+      new TextboxQuestion({
         key: 'sale_price',
         label: 'Sale price',
         value: precio_venta,
         required: true,
         order: 3,
       }),
-      new TextareaQuestion({
+      new TextboxQuestion({
         key: 'buy_price',
         label: 'Buy Price',
         value: precio_compra,
@@ -79,7 +79,7 @@ export class ProductsService {
         required: true,
         order: 4,
       }),
-      new TextareaQuestion({
+      new TextboxQuestion({
         key: 'stock',
         label: 'Stock',
         value: stock,
@@ -87,7 +87,7 @@ export class ProductsService {
 
         order: 5,
       }),
-      new TextareaQuestion({
+      new TextboxQuestion({
         key: 'thresshold_value',
         label: 'Thresshold Value',
         value: thresshold_value,
