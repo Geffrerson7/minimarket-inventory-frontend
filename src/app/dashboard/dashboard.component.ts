@@ -22,10 +22,6 @@ import { DashboardService } from './dashboard.service';
 export class DashboardComponent implements OnInit, OnDestroy {
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
 
-  charts = this.dashboardSrv.getCharts();
-  chart1: any;
-  chart2: any;
-
   chartSeries: ApexNonAxisChartSeries=[40,32,28,55];
 
   chartDetails: ApexChart={
@@ -34,6 +30,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
       show: true
     }
   }
+
+  chartLabels=["Lacteos","Legumbres","Bebidas","Abarrotes"]
   stats = this.dashboardSrv.getStats();
 
   notifySubscription!: Subscription;
@@ -48,13 +46,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    if (this.chart1) {
-      this.chart1?.destroy();
-    }
-    if (this.chart2) {
-      this.chart2?.destroy();
-    }
-
     this.notifySubscription.unsubscribe();
   }
 
