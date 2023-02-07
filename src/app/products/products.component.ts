@@ -11,7 +11,7 @@ import { CategoriesService } from '../core/services/categories.service';
 import { SuppliersService } from '../core/services/suppliers.service';
 import { ModalRegistrarComponent } from '../shared/modal-registrar/modal-registrar.component';
 import { ModalActualizarComponent } from '../shared/modal-actualizar/modal-actualizar.component';
-
+import Pusher from 'pusher-js';
 const dataTable = [
   { columnDef: 'name', header: 'Product' },
   { columnDef: 'sale_price', header: 'Sale Price' },
@@ -39,8 +39,19 @@ export class ProductsComponent  implements OnDestroy{
     public dialog: MatDialog,
     private toastr: ToastrService
   ) {}
-
+  pusher = new Pusher('5c803d95f54b1d5a48e6', {
+    cluster: 'us2'
+  });
+  values: string[]=['','','','','','','','']
   ngOnInit(): void {
+    var channel = this.pusher.subscribe('my-channel');
+    channel.bind('my-event', (data: any) => {
+      const product_data = data.message
+      const values = product_data.split(",")
+      this.values = values
+      console.log(this.values)
+      console.log('values del pusher',values)
+    });
     this.getProducts();
     this.getCategories();
     this.getSuppliers();
@@ -49,7 +60,14 @@ export class ProductsComponent  implements OnDestroy{
     });
   }
 
-  ngOnChange() {}
+  ngOnChange() {
+    var channel = this.pusher.subscribe('my-channel');
+    channel.bind('my-event', (data: any) => {
+      const product_data = data.message
+      const values = product_data.split(",");
+
+    });
+  }
   ngOnDestroy() {
     this.suscription.unsubscribe();
   }
@@ -102,7 +120,7 @@ export class ProductsComponent  implements OnDestroy{
       width: '400px',
       disableClose: true,
       data: {
-        campos: this.product_service.getQuestionsRegister(this.categories,this.suppliers),
+        campos: this.product_service.getQuestionsRegister(this.categories,this.suppliers,this.values[0],this.values[1],this.values[2],this.values[3], this.values[4], this.values[5], this.values[6]),
       },
     });
 

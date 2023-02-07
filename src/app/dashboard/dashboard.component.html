@@ -1,1 +1,37 @@
+<div class="row">
 
+    <!-- Statistics -->
+    <div class="col-sm-6 col-md-3" *ngFor="let stat of stats">
+        <mat-card [ngClass]="['text-white', stat.color]">
+            <mat-card-header>
+                <mat-card-subtitle class="text-dark">{{stat.title}}</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+                <h2 class="m-y-8" class="text-dark">{{stat.amount}}</h2>
+                <small class="text-muted">Monthly</small>
+            </mat-card-content>
+        </mat-card>
+    </div>
+
+    <!-- Charts -->
+    <!-- <div class="col-md-12 mt-4">
+        <mat-card>
+            <mat-card-header>
+                <mat-card-title>Traffic</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <div id="chart1"></div>
+            </mat-card-content>
+        </mat-card>
+    </div> -->
+    <!-- <div class="col-md-5">
+        <mat-card>
+            <mat-card-header>
+                <mat-card-title>Weekly Revenue</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <div id="chart2"></div>
+            </mat-card-content>
+        </mat-card>
+    </div> -->
+</div>
