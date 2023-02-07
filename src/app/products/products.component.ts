@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,OnDestroy  } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
@@ -26,7 +26,7 @@ const dataTable = [
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.scss'],
 })
-export class ProductsComponent {
+export class ProductsComponent  implements OnDestroy{
   products!: Product[];
   tableConfiguration!: tableConfig;
   suscription!: Subscription;
@@ -50,7 +50,9 @@ export class ProductsComponent {
   }
 
   ngOnChange() {}
-
+  ngOnDestroy() {
+    this.suscription.unsubscribe();
+  }
   tableConfig(data: any) {
     this.tableConfiguration = {
       search: true,

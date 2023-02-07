@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,OnDestroy  } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
@@ -22,7 +22,7 @@ const dataTable = [
   templateUrl: './suppliers.component.html',
   styleUrls: ['./suppliers.component.scss']
 })
-export class SuppliersComponent {
+export class SuppliersComponent implements OnDestroy {
   suppliers!: Supplier[];
   tableConfiguration!: tableConfig;
   suscription!: Subscription;
@@ -38,8 +38,13 @@ export class SuppliersComponent {
     this.suscription = this.supplier_service.refresh$.subscribe(()=>{
       this.getSuppliers();
     })
-
   }
+
+  ngOnDestroy() {
+    this.suscription.unsubscribe();
+  }
+
+
   getSuppliers(){
         this.supplier_service.getSuppliers().subscribe({
       next: rpta=>{
@@ -88,7 +93,7 @@ export class SuppliersComponent {
   }
 
   update(supplier: any){
-
+    
     const dialogRef = this.dialog.open(ModalActualizarComponent,{
       width: '400px',
       disableClose: true,
