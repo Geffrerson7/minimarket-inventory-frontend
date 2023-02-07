@@ -44,7 +44,7 @@ export class SuppliersComponent implements OnDestroy {
     this.suscription.unsubscribe();
   }
 
-
+  
   getSuppliers(){
         this.supplier_service.getSuppliers().subscribe({
       next: rpta=>{

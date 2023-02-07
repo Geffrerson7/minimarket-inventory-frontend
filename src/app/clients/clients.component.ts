@@ -41,7 +41,7 @@ export class ClientsComponent  implements OnDestroy{
   ngOnDestroy() {
     this.suscription.unsubscribe();
   }
-  ngOnChange() {}
+  
 
   tableConfig(data: any) {
     this.tableConfiguration = {
