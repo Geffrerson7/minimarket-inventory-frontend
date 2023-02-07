@@ -1,0 +1,123 @@
+
+<div class="title-div">
+  <mat-form-field appearance="outline">
+    <mat-label>Buscar</mat-label>
+    <mat-icon matSuffix>search</mat-icon>
+    <input
+      matInput
+      (keyup)="applyFilter($event)"
+      placeholder="Buscar"
+      #input
+    />
+  </mat-form-field>
+  <div>
+    <button mat-raised-button color="primary" (click)="registrar($event)">
+      Agregar +
+    </button>
+  </div>
+</div>
+<table mat-table
+       [dataSource]="dataSource" multiTemplateDataRows
+       class="mat-elevation-z8"
+       matSort
+       (matSortChange)="announceSortChange($event)"
+       >
+  <ng-container matColumnDef="{{ column.columnDef }}" *ngFor="let column of configuration?.dataTable">
+    <th
+    mat-header-cell
+    *matHeaderCellDef
+    mat-sort-header
+    sortActionDescription="Sort by {{ column.columnDef }}"
+    > {{column.header }}
+  </th>
+    <td mat-cell *matCellDef="let element">
+      <div
+            *ngIf="
+              column.columnDef === 'fechamodificacion' ||
+              column.columnDef === 'fecharegistro' ||
+              column.columnDef === 'expirity_date'
+            "
+          >
+            {{ element[column.columnDef] | date : "dd/MM/yyyy": 'UTC' }}
+          </div>
+          <div *ngIf="column.columnDef === 'order_details'" >
+            {{ element[column.columnDef].length }}
+
+          </div>
+          <div *ngIf="column.columnDef === 'acción'" class="d-flex">
+            <button
+              mat-icon-button
+              color="primary"
+              *ngIf="actualizar"
+              (click)="edit(element)"
+            >
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button
+              mat-icon-button
+              color="warn"
+              *ngIf="borrar"
+              (click)="delete(element)"
+            >
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+          <div
+            *ngIf="
+              column.columnDef !== 'acción' && column.columnDef !== 'expirity_date' && column.columnDef !== 'order_details'
+            "
+          >
+            {{ element[column.columnDef] }}
+          </div>
+    </td>
+  </ng-container>
+  <ng-container matColumnDef="expand">
+    <th mat-header-cell *matHeaderCellDef aria-label="row actions">&nbsp;</th>
+    <td mat-cell *matCellDef="let element" >
+      <button mat-icon-button aria-label="expand row" (click)="(expandedElement = expandedElement === element ? null : element); $event.stopPropagation()">
+        <mat-icon *ngIf="expandedElement !== element">keyboard_arrow_down</mat-icon>
+        <mat-icon *ngIf="expandedElement === element">keyboard_arrow_up</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+
+  <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
+  <ng-container matColumnDef="expandedDetail">
+    <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplayWithExpand.length">
+      <div class="element-detail"
+           [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+        <div class="element-diagram">
+          <div class="element-position" >
+            <div *ngFor="let item of element | keyvalue">
+              <p *ngIf="!(item.key == 'id')&&!(item.key=='order_details')&&!(item.key=='client_id')"><b>{{item.key}}:</b> {{item.value}}</p>
+              <mat-list *ngIf="item.key=='order_details'">
+              <mat-list-item *ngFor="let order of convert(item.value) ">
+                <span matListItemTitle>{{order['product']['name']}}</span>
+                <span matListItemLine>Cantidad: {{ order['quantity']}}</span>
+              </mat-list-item>
+            </mat-list>
+          </div>
+          </div>
+        </div>
+
+      </div>
+    </td>
+  </ng-container>
+  <tr class="mat-row" *matNoDataRow>
+    <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+  </tr>
+  <tr mat-header-row *matHeaderRowDef="columnsToDisplayWithExpand"></tr>
+  <tr mat-row *matRowDef="let element; columns: columnsToDisplayWithExpand;"
+      class="element-row"
+      [class.expanded-row]="expandedElement === element"
+      (click)="expandedElement = expandedElement === element ? null : element">
+  </tr>
+  <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="detail-row"></tr>
+</table>
+<mat-paginator
+[pageIndex]="5"
+[pageSize]="10"
+[pageSizeOptions]="[5,10, 25, 50]"
+*ngIf="configuration.pagination"
+>
+</mat-paginator>

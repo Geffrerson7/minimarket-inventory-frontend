@@ -1,0 +1,34 @@
+<div>
+  <form (ngSubmit)="onSubmit()" [formGroup]="form">
+    <div *ngFor="let question of questions">
+      <app-question [question]="question" [form]="form"></app-question>
+    </div>
+
+    <div class="form-row"  [ngStyle]="{'display': 'flex', 'justify-content': 'space-around'}">
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+
+        [disabled]="secondForm?!isSecondFormValid || !form.valid: !form.valid"
+        (click)="button_type=='Registrar'?save(form.value):edit(form.value)"
+      >
+
+        {{ button_type }}
+      </button>
+      <button
+      mat-raised-button
+      color="secondary"
+      type="submit"
+      (click)="cancel()"
+      [mat-dialog-close]="false" cdkFocusInitial
+    >
+      Cancelar
+    </button>
+    </div>
+  </form>
+
+  <!-- <div *ngIf="payLoad" class="form-row">
+      <strong>Saved the following values</strong><br>{{payLoad}}
+    </div> -->
+</div>

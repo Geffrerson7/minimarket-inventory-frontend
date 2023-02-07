@@ -1,0 +1,107 @@
+.container-table {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  gap: 10px;
+  font-size: 13px;
+}
+
+.mat-table {
+  background: #fff;
+  border: 2px solid #fff;
+  width: 100%;
+}
+
+.mat-header-cell {
+  padding: 0.5em;
+  border-right: 1px solid transparent;
+  color: #434343;
+  font-weight: 500;
+  font-size: 15px;
+}
+
+.title-div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.mat-row .mat-cell {
+  border-bottom: 1px solid transparent;
+  border-top: 1px solid transparent;
+  border-right: 1px solid transparent;
+  cursor: pointer;
+  padding: 0.5em;
+}
+
+.d-flex {
+  display: flex;
+  gap: 1em;
+}
+
+// ::ng-deep .mat-form-field-appearance-outline .mat-form-field-flex {
+//   width: 100%;
+// }
+
+// ::ng-deep .mat-form-field-wrapper {
+//   padding-bottom: 0em;
+// }
+
+:host ::ng-deep .mat-flat-button.mat-primary, .mat-raised-button.mat-primary, .mat-fab.mat-primary, .mat-mini-fab.mat-primary {
+  background-color: #094698;
+}
+.container_header{
+  display: flex;
+  flex-direction: column;
+  span{
+    font-weight: 100;
+  }
+}
+table {
+  width: 100%;
+}
+
+tr.detail-row {
+  height: 0;
+}
+
+tr.element-row:not(.expanded-row):hover {
+  background: whitesmoke;
+}
+
+tr.element-row:not(.expanded-row):active {
+  background: #efefef;
+}
+
+.element-row td {
+  border-bottom-width: 0;
+}
+
+.element-detail {
+  overflow: hidden;
+  display: flex;
+}
+
+.element-diagram {
+  min-width: 80px;
+  //border: 2px solid black;
+  padding: 8px;
+  font-weight: lighter;
+  margin: 8px 0;
+  height: 100%;
+}
+
+.element-symbol {
+  font-weight: bold;
+  font-size: 40px;
+  line-height: normal;
+}
+
+.element-description {
+  padding: 16px;
+}
+
+.element-description-attribution {
+  opacity: 0.5;
+}

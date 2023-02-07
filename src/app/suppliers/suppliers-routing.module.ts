@@ -8,11 +8,12 @@ const routes: Routes = [{
   path: '',
   component: LayoutComponent,
 children:[
-  {path:'', component: SuppliersComponent}
+  {path:'', component: SuppliersComponent},
+
 ]
  }];
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class SuppliersRoutingModule { }

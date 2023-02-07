@@ -1,0 +1,38 @@
+.main-logo{
+  width: 300px;
+}
+.form-logo{
+  width: 50px;
+}
+section.login-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 100vh;
+}
+.login-form{
+  display: flex;
+  flex-direction: column;
+}
+
+.btn_login{
+  background-color: #1366D9;
+  padding: 10px;
+  color: white;
+  font-weight: 600;
+  font-size: 15px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.btn_disable{
+  padding: 10px;
+
+  font-weight: 600;
+  font-size: 15px;
+  border: none;
+  border-radius: 3px;
+}
+p.sign-up{
+  padding: 10px 0;
+}

@@ -14,14 +14,20 @@ export class SidenavComponent implements OnInit {
       icon: 'home'
     },
     {
-      title:  'Inventory',
-      link:'/inventory',
+      title:'Category',
+      link: '/categories',
+      icon:'fact_check'
+    },
+    {
+      title:  'Products',
+      link:'/products',
       icon:'inventory'
     },
     {
-      title:'Reports',
-      link:'/reports',
-      icon:'analytics'
+      title:'Clients',
+      link: '/clients',
+      icon:'assignment_ind'
+
     },
     {
       title:'Suppliers',
@@ -32,11 +38,6 @@ export class SidenavComponent implements OnInit {
       title:'Orders',
       link: '/orders',
       icon:'package'
-    },
-    {
-      title:'Manage Store',
-      link: '/manage-store',
-      icon:'fact_check'
     }
 
   ]
@@ -55,7 +56,10 @@ export class SidenavComponent implements OnInit {
   constructor() {
 
   }
-
+logOut(){
+  localStorage.clear();
+  window.location.reload();
+}
   ngOnInit(): void {
 
   }
