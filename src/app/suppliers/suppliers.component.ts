@@ -89,6 +89,7 @@ export class SuppliersComponent {
 
   update(supplier: any){
 
+    console.log(supplier)
     const dialogRef = this.dialog.open(ModalActualizarComponent,{
       width: '400px',
       disableClose: true,
