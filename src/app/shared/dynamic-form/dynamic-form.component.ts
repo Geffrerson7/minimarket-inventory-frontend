@@ -26,9 +26,7 @@ export class DynamicFormComponent implements OnInit {
 
   }
 
-  ngOnChanges(changes: SimpleChanges) {
-    console.log(this.isSecondFormValid, 'touched')
-  }
+
   onSubmit() {
     this.payLoad = JSON.stringify(this.form.getRawValue());
   }
@@ -37,7 +35,7 @@ export class DynamicFormComponent implements OnInit {
     this.form.invalid?null:this.editEvent.emit(element);
   }
   save(element:string) {
-    console.log()
+
     this.form.invalid?null:this.saveEvent.emit(element);
   }
   cancel(){

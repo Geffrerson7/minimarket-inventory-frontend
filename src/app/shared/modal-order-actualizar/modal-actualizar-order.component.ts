@@ -7,6 +7,7 @@ import { MatTreeFlatDataSource, MatTreeFlattener } from '@angular/material/tree'
 import { Observable } from 'rxjs';
 import { QuestionBase } from 'src/app/core/models/forms/question-base';
 import { Product } from 'src/app/core/models/Product.model';
+import { OrderService } from 'src/app/core/services/order.service';
 import { ModalActualizarComponent } from '../modal-actualizar/modal-actualizar.component';
 interface Node {
   id: string;
@@ -26,11 +27,11 @@ interface ExampleFlatNode {
 }
 
 @Component({
-  selector: 'app-modal-registrar-orden',
-  templateUrl: './modal-registrar.component.html',
-  styleUrls: ['./modal-registrar.component.scss']
+  selector: 'app-modal-actualizar-order',
+  templateUrl: './modal-actualizar-order.component.html',
+  styleUrls: ['./modal-actualizar-order.component.scss']
 })
-export class ModalRegistrarOrderComponent implements OnInit {
+export class ModalActualizarOrderComponent{
   fields$: Observable<QuestionBase<any>[]>;
 
   private _transformer = (node: Node, level: number) => {
@@ -62,14 +63,16 @@ export class ModalRegistrarOrderComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any) {
       this.fields$ = this.data['campos'];
       this.dataSource.data = this.data['products'];
-      console.log(this.dataSource.data)
+
     }
     ngOnInit(): void {
+
+
 
         const group: any = {};
 
         this.dataSource.data.forEach(product=> {
-          group[product.id+''] = new FormControl(0, Validators.required)
+          group[product.id] = new FormControl(product.id, Validators.required)
 
         });
         this.form=new FormGroup(group);
@@ -78,11 +81,12 @@ export class ModalRegistrarOrderComponent implements OnInit {
     cambiar!:Boolean;
     isTouched(){
       this.cambiar = true;
-      console.log(this.cambiar, 'cambio')
+
       return this.cambiar;
     }
 
     save(data: any): void {
+      console.log(data)
       const array_product_cant = []
       let products = this.form.getRawValue();
 
@@ -96,9 +100,10 @@ export class ModalRegistrarOrderComponent implements OnInit {
         }
 
       }
+
       data['client'] = parseInt(data['client'].split('-')[0]);
-      data['order_detail'] = array_product_cant;
-      console.log(data)
+      data['order_details'] = array_product_cant;
+
       this.dialogRef.close(data);
     }
 
@@ -115,11 +120,11 @@ export class ModalRegistrarOrderComponent implements OnInit {
         contador++
         this.form.get(controlName)?.setValue(contador);
       }
-      console.log( this.form.get(controlName)?.value)
+
     }
 
     less(controlName:string, contador:number, stock: number){
-      console.log(contador)
+
       if(contador===0||this.form.get(controlName)?.value>stock)
       this.form.get(controlName)?.setValue(0);
       else

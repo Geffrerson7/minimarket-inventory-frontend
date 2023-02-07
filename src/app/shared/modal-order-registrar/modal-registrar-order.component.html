@@ -1,5 +1,5 @@
 <mat-dialog-content class="container">
-  <section>
+<section>
     <head class="d-flex">
     <mat-icon>add</mat-icon>
     <h2>Registrar</h2>
@@ -44,9 +44,9 @@
         </p>
         </div>
         <div class="contador_container">
-            <button (click)="add(node.id.toString(),form.get(node.id.toString())?.value,node.stock)">+</button>
-            <input class="cant-product" [formControlName]="node.id" (change)="isTouched()" >
-            <button (click)="less(node.id.toString(),form.get(node.id.toString())?.value, node.stock)">-</button>
+            <button (click)="add(node.id.toString(),form.get(node.id.toString())?.value,node.stock)" class="oper_btn">+</button>
+            <input class="cant-product" [formControlName]="node.id" (change)="isTouched()" class="inp_cont">
+            <button (click)="less(node.id.toString(),form.get(node.id.toString())?.value, node.stock)" class="oper_btn">-</button>
         </div>
 
       </mat-tree-node>

@@ -11,7 +11,9 @@ import { ModalBorrarComponent } from './modal-borrar/modal-borrar.component';
 import { TableCrudComponent } from './table-crud/table-crud.component';
 import { AngularMaterialModule } from '../angular-material/angular-material.module';
 import { ModalRegistrarComponent } from './modal-registrar/modal-registrar.component';
-import { ModalRegistrarOrderComponent } from './modal-order-registrar/modal-registrar.component';
+import { ModalRegistrarOrderComponent } from './modal-order-registrar/modal-registrar-order.component';
+import { ProductsComponent } from './products/products.component';
+import { ModalActualizarOrderComponent } from './modal-order-actualizar/modal-actualizar-order.component';
 
 
 @NgModule({
@@ -23,7 +25,9 @@ import { ModalRegistrarOrderComponent } from './modal-order-registrar/modal-regi
     ModalBorrarComponent,
     ModalRegistrarComponent,
     TableCrudComponent,
-    ModalRegistrarOrderComponent
+    ModalRegistrarOrderComponent,
+    ProductsComponent,
+    ModalActualizarOrderComponent
   ],
   imports: [
     CommonModule,
@@ -36,7 +40,8 @@ import { ModalRegistrarOrderComponent } from './modal-order-registrar/modal-regi
     ModalRegistrarComponent,
     ModalBorrarComponent,
     TableCrudComponent,
-    ModalRegistrarOrderComponent
+    ModalRegistrarOrderComponent,
+    ModalActualizarOrderComponent
   ]
 })
 export class SharedModule { }

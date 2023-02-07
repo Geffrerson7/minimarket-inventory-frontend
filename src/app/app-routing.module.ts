@@ -10,7 +10,7 @@ const routes: Routes = [
   { path: 'suppliers', loadChildren: () => import('./suppliers/suppliers.module').then(m => m.SuppliersModule), canActivate: [ValidateSessionGuard] },
   { path: 'orders', loadChildren: () => import('./orders/orders.module').then(m => m.OrdersModule) },
   { path: 'manage-store', loadChildren: () => import('./manage-store/manage-store.module').then(m => m.ManageStoreModule) },
-  { path: 'order-detail', loadChildren: () => import('./order-detail/order-detail.module').then(m => m.OrderDetailModule), canActivate: [ValidateSessionGuard]  },
+
   { path: 'shared', loadChildren: () => import('./shared/shared.module').then(m => m.SharedModule) },
   { path: '', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) },
   { path: 'clients', loadChildren: () => import('./clients/clients.module').then(m => m.ClientsModule) },

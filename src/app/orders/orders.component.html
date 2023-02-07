@@ -1,6 +1,8 @@
 <app-table-crud
 [configuration]="tableConfiguration"
 (registerEvent)="register($event)"
-
+(editEvent)="update($event)"
+[borrar]="true"
+(deleteEvent)="delete($event)"
 ></app-table-crud>
 

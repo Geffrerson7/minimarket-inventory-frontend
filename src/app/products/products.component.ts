@@ -95,6 +95,7 @@ export class ProductsComponent {
   }
 
   register(event: any) {
+
     const dialogRef = this.dialog.open(ModalRegistrarComponent, {
       width: '400px',
       disableClose: true,
@@ -104,6 +105,7 @@ export class ProductsComponent {
     });
 
     dialogRef.afterClosed().subscribe((result) => {
+      console.log(result)
       if (result) {
         for (const key in result) {
           if (!isNaN(parseFloat(result[key])) && key!="expirity_date") {
