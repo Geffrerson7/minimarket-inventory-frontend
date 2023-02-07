@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
-import { Subscription } from 'rxjs';
 import { Supplier } from '../core/models/Supplier.model';
 import { tableConfig } from '../core/models/table_config.model';
 import { SuppliersService } from '../core/services/suppliers.service';
@@ -25,7 +24,7 @@ const dataTable = [
 export class SuppliersComponent {
   suppliers!: Supplier[];
   tableConfiguration!: tableConfig;
-  suscription!: Subscription;
+
   constructor(
     private supplier_service: SuppliersService,
     public dialog: MatDialog,
@@ -33,15 +32,8 @@ export class SuppliersComponent {
     ) { }
 
   ngOnInit(): void {
-    this.getSuppliers();
 
-    this.suscription = this.supplier_service.refresh$.subscribe(()=>{
-      this.getSuppliers();
-    })
-
-  }
-  getSuppliers(){
-        this.supplier_service.getSuppliers().subscribe({
+    this.supplier_service.getSuppliers().subscribe({
       next: rpta=>{
         this.suppliers = rpta['body'];
 
@@ -52,6 +44,10 @@ export class SuppliersComponent {
 
       }
     });
+
+  }
+  ngOnChange(){
+
   }
   tableConfig(data: any) {
     this.tableConfiguration = {
@@ -74,13 +70,13 @@ export class SuppliersComponent {
       if(result){
         this.supplier_service.delete(supplier.id).subscribe({
           next: rpta=>{
-            this.toastr.success('Se eliminó correctamente');
+            console.log(rpta)
           },
           error: err=>{
-            this.toastr.error(err['error']['message'], 'Error');
+            console.log(err)
           },
           complete() {
-
+            window.location.reload()
           },
         })
       }
@@ -89,7 +85,6 @@ export class SuppliersComponent {
 
   update(supplier: any){
 
-    console.log(supplier)
     const dialogRef = this.dialog.open(ModalActualizarComponent,{
       width: '400px',
       disableClose: true,
@@ -133,11 +128,10 @@ export class SuppliersComponent {
       if (result){
         this.supplier_service.register(result).subscribe({
         next: rpta=>{
-
           this.toastr.success('Registrado');
         },
         error: err=>{
-
+          console.log(err)
           this.toastr.error(err['error']['message'], 'Error');
         },
         complete: ()=>{
