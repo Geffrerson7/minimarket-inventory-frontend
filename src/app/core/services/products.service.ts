@@ -47,52 +47,58 @@ export class ProductsService {
     );
   }
 
-  getQuestionsRegister(categories: any[], suppliers: any[]) {
+  getQuestionsRegister(categories: any[], suppliers: any[], name: string, description: string, precio_venta: string, precio_compra: string, stock: string, thresshold_value: string, fecha_expiracion: string) {
     const questions: QuestionBase<string | number>[] = [
       new TextboxQuestion({
         key: 'name',
         label: 'Product Name',
+        value:name,
         required: true,
         order: 1,
       }),
       new TextareaQuestion({
         key: 'description',
         label: 'Description',
+        value: description,
         required: false,
-        type: 'number',
+
         order: 2,
       }),
-      new NumberQuestion({
+      new TextareaQuestion({
         key: 'sale_price',
         label: 'Sale price',
-        type: 'number',
+        value: precio_venta,
         required: true,
         order: 3,
       }),
-      new NumberQuestion({
+      new TextareaQuestion({
         key: 'buy_price',
         label: 'Buy Price',
-        type: 'number',
+        value: precio_compra,
+
         required: true,
         order: 4,
       }),
-      new NumberQuestion({
+      new TextareaQuestion({
         key: 'stock',
         label: 'Stock',
+        value: stock,
         required: true,
-        type: 'number',
+
         order: 5,
       }),
-      new NumberQuestion({
+      new TextareaQuestion({
         key: 'thresshold_value',
         label: 'Thresshold Value',
+        value: thresshold_value,
         required: false,
-        type: 'number',
+
         order: 5,
       }),
       new TextboxQuestion({
         key: 'expirity_date',
         label: 'Expirity Date',
+        value: fecha_expiracion,
         required: false,
         type: 'date',
         order: 6,
